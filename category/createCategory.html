@@ -29,12 +29,12 @@
             }
             console.log(JSON.stringify(nameCategory))
             $.ajax({
-                url:'https://case-zigggmp3.herokuapp.com/api/categories',
+                url:'http://localhost:5000/api/categories',
                 method:'POST',
                 headers:{
                     Authorization: "Bearer " + window.localStorage.getItem('TOKEN_KEY')
                 },
-                contentType:'application/Json; charset=UTF-8',
+                contentType:'application/json; charset=UTF8',
                 data: JSON.stringify(nameCategory),
                 success:function (){
                     document.getElementById('create').innerHTML = "create success!"
