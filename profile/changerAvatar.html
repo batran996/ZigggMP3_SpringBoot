@@ -35,6 +35,7 @@
             success:function (data) {
                 console.log(data);
                 $("#success").html("Thay đổi avatar thành công");
+                localStorage.setItem("AVATAR_KEY",$("#img").val());
             },
             error: function () {
                 alert("failed")
