@@ -39,7 +39,7 @@
         rePass : $("#rePass").val()
     }
     $.ajax({
-        url:"https://zigmp3.herokuapp.com/api/auth/changer/pass",
+        url:"https://case-zigggmp3.herokuapp.com/api/auth/changer/pass",
         method:"PUT",
         contentType: 'application/json; charset=UTF8',
         headers : {'Authorization': 'Bearer'+window.localStorage.getItem('TOKEN_KEY')},

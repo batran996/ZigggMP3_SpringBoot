@@ -13,7 +13,7 @@
 
 <progress value="0" max="100" id="uploader">0%</progress>
 <input type="file" value="upload" accept=".jpg" id="fileButton">
-<h1>Hello GFG</h1>
+<h1>Vui lòng chọn ảnh đại diện mới </h1>
 <input type="text" id="img">
 <p style="color: #4a90e2" id="success"></p>
 <div id="imgDiv"></div>
@@ -27,7 +27,7 @@
           avatar: $("#img").val()
         }
         $.ajax({
-            url:"https://zigmp3.herokuapp.com/api/auth/changer/avatar",
+            url:"https://case-zigggmp3.herokuapp.com/api/auth/changer/avatar",
             method:"PUT",
             contentType: 'application/json; charset=UTF8',
             headers : {'Authorization': 'Bearer'+window.localStorage.getItem('TOKEN_KEY')},
