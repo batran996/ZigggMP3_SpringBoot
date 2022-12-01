@@ -8,47 +8,55 @@
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 <body>
-<h1>Profile</h1>
-<a href="../ziggmp3/index.html"><button> Trang chu </button></a>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1>Profile</h1>
+            <a href="../ziggmp3/index.html"><button> Trang chu </button></a>
 
-<table border="1">
-    <tr>
-        <td>name</td>
-        <td><input id="name" type="text"></td>
-    </tr>
-    <tr>
-        <td>username</td>
-        <td><input id="username" type="text"></td>
-    </tr>
-    <tr>
-        <td>avatar</td>
-        <td><img style="width: 50px;height: 50px;border-radius: 30%" id="avatar"></td>
+            <table border="1">
+                <tr>
+                    <td>name</td>
+                    <td><input id="name" type="text"></td>
+                </tr>
+                <tr>
+                    <td>username</td>
+                    <td><input id="username" type="text"></td>
+                </tr>
+                <tr>
+                    <td>avatar</td>
+                    <td><img style="width: 50px;height: 50px;border-radius: 30%" id="avatar"></td>
 
-    </tr>
-    <tr>
-        <td>Email</td>
-        <td><input id="email" type="text"></td>
-    </tr>
-    <tr>
-        <td>Password</td>
-        <td>*********</td>
-    </tr>
-    <tr>
-        <td>
-            <a href="../profile/changerPass.html"><button style="width: 100% ;color: #c308e2">Đổi password</button></a>
-        </td>
-        <td>
-            <a href="../profile/changerAvatar.html"><button style="width: 100% ; color: #030000" >Đổi avatar</button> </a>
-        </td>
-    </tr>
-</table>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td><input id="email" type="text"></td>
+                </tr>
+                <tr>
+                    <td>Password</td>
+                    <td>*********</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="../profile/changerPass.html"><button style="width: 100% ;color: #c308e2">Đổi password</button></a>
+                    </td>
+                    <td>
+                        <a href="../profile/changerAvatar.html"><button style="width: 100% ; color: #030000" >Đổi avatar</button> </a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+</div>
+
 <script>
     $(document).ready(function () {
         getUserById();
     })
     function getUserById() {
         $.ajax({
-            url: "https://case-zigggmp3.herokuapp.com/api/auth/profile",
+            url: "http://localhost:8080/api/auth/profile",
             method: "GET",
             contentType: 'application/json; charset=UTF8',
             headers : {'Authorization': 'Bearer'+window.localStorage.getItem('TOKEN_KEY')},
@@ -79,7 +87,7 @@
         }
         console.log(profileEdit)
         $.ajax({
-            url: "https://case-zigggmp3.herokuapp.com/api/auth/profile",
+            url: "http://localhost:8080/api/auth/profile",
             method: "PUT",
             data: JSON.stringify(profileEdit),
             contentType: "application/json; charset=utf-8",

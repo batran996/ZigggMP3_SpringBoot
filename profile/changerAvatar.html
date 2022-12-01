@@ -27,7 +27,7 @@
           avatar: $("#img").val()
         }
         $.ajax({
-            url:"https://case-zigggmp3.herokuapp.com/api/auth/changer/avatar",
+            url:"http://localhost:8080/api/auth/changer/avatar",
             method:"PUT",
             contentType: 'application/json; charset=UTF8',
             headers : {'Authorization': 'Bearer'+window.localStorage.getItem('TOKEN_KEY')},

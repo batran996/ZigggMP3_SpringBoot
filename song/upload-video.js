@@ -73,7 +73,7 @@ $('#create').click(function () {
 
 
     $.ajax({
-        url:"https://case-zigggmp3.herokuapp.com/api/song",
+        url:"http://localhost:8080/api/song",
         method:'POST',
         data:JSON.stringify(uploadSong),
         contentType:'application/json; charset=UTF8',

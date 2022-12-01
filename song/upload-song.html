@@ -8,95 +8,172 @@
 
 </head>
 <body>
-<div id="nav-bar"></div>
-<p id="add"></p>
-<h1>upload nhac</h1>
-<span style="color: red" id="validate"></span>
-<div id="loading"></div>
-<input type="file" value="upload"  id="fileButton">
 
-<div>
-    <input type="text" id="title" placeholder="title video">
-    <select id="category">
-    </select>
-    <button id="create">upload video</button><br>
-    <div></div>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1 style="color: #e2ac36;text-align: center">upload nhac</h1>
+            <table border="1" style="color: #e2ac36">
+                <tr>
+                    <th>NAME</th>
+                    <th>BACKGROUND</th>
+                    <th>SONG</th>
+                    <th>DURATION</th>
+                    <th>CATEGORY</th>
+                    <th>SINGER</th>
+                </tr>
+                <tr>
+                    <td>
+                        <input id="name" type="text">
+                    </td>
+                    <td>
+                        <input type="file" value="upload" id="background">
+                    </td>
+                    <td>
+                        <input type="file" value="upload" id="pathSong">
+                    </td>
+                    <td>
+                        <input id="duration" type="time">
+                    </td>
+                    <td>
+                        <select id="category">
+                        </select>
+                    </td>
+                    <td>
+                        <select id="singer" multiple>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+            <button id="create">upload bài hát</button>
+        </div>
+    </div>
 </div>
-<table border="1">
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>NAME</th>
-        <th>URL SONG</th>
-        <th>BACK GROW</th>
-        <th>TIME</th>
-        <th>DELETE</th>
-        <th>EDIT</th>
-    </tr>
-    </thead>
-    <tbody id="tbody"></tbody>
-</table>
-<script>
-    $.ajax({
-        url:"https://case-zigggmp3.herokuapp.com/api/song",
-        method:'GET',
-        contentType:'application/json; charset=UTF8',
-        headers:{'Authorization':'Bearer '+window.localStorage.getItem('TOKEN_KEY')
-        },
-        success:function (data){
-            console.log(data.content)
-            let listSong = data.content;
-            drawSong(listSong);
-        }
-    })
-    function drawSong(song){
-        let drawSong='';
-        for (let i = 0; i < song.length; i++) {
-            console.log(song[i])
-            console.log("data",song)
-            drawSong+=`<tr>
-<td>${song[i].id}</td>
-<td>${song[i].name}</td>
-<td>${song[i].background}</td>
-<td>${song[i].duration}</td>
-<td>${song[i].pathSong}</td>
+</div>
 
- <td><a href="deleteSong.html?id=${song[i].id}">Delete</a></td>
-  <td><a href="editSong.html?id=${song[i].id}">Edit</a></td>
-</tr>`
-        }
-        document.getElementById("tbody").innerHTML=drawSong;
-    }
-</script>
+
 <script>
 
+    //    $.ajax({
+    //        url: "http://localhost:8080/api/song",
+    //        method: 'GET',
+    //        contentType: 'application/json; charset=UTF8',
+    //        headers: {
+    //            'Authorization': 'Bearer ' + window.localStorage.getItem('TOKEN_KEY')
+    //        },
+    //        success: function (data) {
+    //            console.log(data.content)
+    //            let listSong = data.content;
+    //            drawSong(listSong);
+    //        }
+    //    })
+
+    //     function drawSong(song) {
+    //         let drawSong = '';
+    //         for (let i = 0; i < song.length; i++) {
+    //             console.log(song[i])
+    //             console.log("data", song)
+    //             drawSong += `<tr>
+    // <td>${song[i].id}</td>
+    // <td>${song[i].name}</td>
+    // <td>${song[i].background}</td>
+    // <td>${song[i].duration}</td>
+    // <td>${song[i].pathSong}</td>
+    //
+    //  <td><a href="deleteSong.html?id=${song[i].id}">Delete</a></td>
+    //   <td><a href="editSong.html?id=${song[i].id}">Edit</a></td>
+    // </tr>`
+    //         }
+    //         document.getElementById("tbody").innerHTML = drawSong;
+    //     }
 </script>
 <script src="upload-video.js"></script>
 
 <script>
+    //lấy value category
     $.ajax({
-        url:"https://case-zigggmp3.herokuapp.com/api/categories",
-        method:'GET',
-        contentType:'application/json; charset=UTF8',
-        headers:{'Authorization':'Bearer '+window.localStorage.getItem('TOKEN_KEY')
+        url: "http://localhost:8080/api/categories",
+        method: 'GET',
+        contentType: 'application/json; charset=UTF8',
+        headers: {
+            'Authorization': 'Bearer ' + window.localStorage.getItem('TOKEN_KEY')
         },
-        success:function (data){
+        success: function (data) {
             console.log(data.content)
             let listCategory = data.content;
-            drawSelect(listCategory);
+            drawSelectCategory(listCategory);
         }
     })
-    function drawSelect(list){
-        let drawOption='';
+
+    function drawSelectCategory(list) {
+        let drawOption = '';
         for (let i = 0; i < list.length; i++) {
-            console.log("data",list[i])
-            drawOption+=`<option value="${list[i].id}">${list[i].name}</option>`
+            console.log("data", list[i])
+            drawOption += `<option value="${list[i].id}">${list[i].name}</option>`
         }
-        document.getElementById("category").innerHTML=drawOption;
+        document.getElementById("category").innerHTML = drawOption;
     }
+
+    ///lấy value cac sĩ
     $.ajax({
-        url:"https://case-zigggmp3.herokuapp.com/api/song",
-        method: ""
+        url: "http://localhost:8080/api/singer",
+        method: 'GET',
+        contentType: 'application/json; charset=UTF8',
+        headers: {
+            'Authorization': 'Bearer ' + window.localStorage.getItem('TOKEN_KEY')
+        },
+        success: function (data) {
+            console.log(data.content)
+            let listSinger = data.content;
+            drawSelectSinger(listSinger);
+        }
+    })
+
+    function drawSelectSinger(list) {
+        let drawOption = "";
+        for (let i = 0; i < list.length; i++) {
+            drawOption += `<option value="${list[i].id}">${list[i].name}</option>`
+        }
+        document.getElementById("singer").innerHTML = drawOption;
+    }
+
+    ///create song
+    $(document).ready(function () {
+        $('#create').click(function () {
+            let arrSinger = [];
+            for (let i = 0; i < $("#singer").val().length; i++) {
+                let singer = {
+                    id: $("#singer").val()[i]
+                };
+                arrSinger.push(singer);
+            }
+
+            let songCreate = {
+                name: $("#name").val(),
+                background: $("#background").val(),
+                pathSong: $("#pathSong").val(),
+                duration: $("#duration").val(),
+                category: {id: $("#category").val()},
+                singers: arrSinger
+            }
+            let ad = $("#singer").val();
+            console.log(ad);
+            $.ajax({
+                url: "http://localhost:8080/api/song",
+                method: "POST",
+                data: JSON.stringify(songCreate),
+                contentType: "application/json; charset=UTF8",
+                headers: {
+                    "Authorization": "Bearer" + window.localStorage.getItem('TOKEN_KEY')
+                },
+                success: function (data) {
+                    alert("create success!")
+                },
+                error: function (data) {
+                    alert("create failed!")
+                }
+            })
+        })
     })
 </script>
 </body>
